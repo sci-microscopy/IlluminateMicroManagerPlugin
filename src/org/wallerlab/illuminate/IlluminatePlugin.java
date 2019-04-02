@@ -82,10 +82,14 @@ public class IlluminatePlugin implements MenuPlugin, SciJavaPlugin  {
             }
         }
         if (led_array_found)
+        {
             try {
                 controller_frame = new IlluminateControllerFrame(mmCore, device_name, debugFlag);
         } catch (Exception ex) {
             Logger.getLogger(IlluminatePlugin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        } else {
+            studio_.logs().showMessage("LED Array not found.  This plugin is no fun without the hardware");
         }
 
     }
@@ -96,9 +100,7 @@ public class IlluminatePlugin implements MenuPlugin, SciJavaPlugin  {
      */
     @Override
     public String getSubMenu() {
-        return "Illumination";
-        // Indicates that we should show up in the root Plugins menu.
-//      return "";
+        return "Device Control";
     }
 
     @Override
